@@ -10,22 +10,62 @@ printf ('3 - Resolver ....  \n')
 printf ('0 - Sair.\n')
 op = input ('Escolha: ');
 
-if (op == 1)%validação
+% Execs validation function
+function [X, Y1Euler, Y2Euler] = validate(m)
     % Sistema  PVI
-    clc;
     f1 = @ (x, y1, y2) y2;
     f2 = @ (x, y1, y2) 2 * y1 + y2 - x^2;
-    disp(' Resolvendo o problema de validação')
-    m = input ('qtos subintervalos (m)? ');
-    disp(' Fazer...')
     %  Euler
-    % A chamada do método de Euler para resolver o sistema seria feita aqui
-    %  por exemplo, com o comando, abaixo (que está inativo obviamente pois vcs deverao implemntar)
-    limit_low = 0;
-    limit_high = 1;
+    disp(' Resolvendo o problema de validação')
+    a = 0;
+    b = 1;
     y1a = 1;
     y2a = 0;
-    [X, Y1Euler, Y2Euler] = IVPEuler(limit_low, limit_high, y1a, y2a, m, f1, f2)
+    % 0.25(e^(2x) + 2x^2 - 2x + 3)
+    y1exactf = @(x) 0.25 * (exp(2 * x) + 2 * x^2 - 2 * x + 3);
+    y2exactf = @(x) y1exactf(x);
+
+    [X, Y1Euler, Y2Euler] = rk1(a, b, y1a, y2a, m, f1, f2);
+
+    % Pre-processing for plotting
+    y1exact = zeros(1, m + 1);
+    y2exact = zeros(1, m + 1);
+    h = (b - a) / m;
+
+    for i = a:b
+        y1exact(i + 1) = y1exactf(a + (i - 1) * h);
+        y2exact(i + 1) = y2exactf(a + (i - 1) * h);
+    endfor
+
+    % Plot y1 and y1exact at the same time on x from a to b
+    plot(X, Y1Euler, 'b-o', 'linewidth', 2, 'displayname', 'y1', X, y1exact, 'g-+', 'linewidth', 2, 'markersize', 50, 'displayname', 'y1exact')
+    grid
+    xlabel('x')
+    ylabel('y ')
+    % Name for title
+    title(cstrcat('Sol for y1 via Euler with m = ', num2str(m)));
+
+    % wait 5 secs
+    pause(5)
+
+    % Plot y2 and y2exact at the same time on x from a to b
+    plot(X, Y2Euler, 'b-o', 'linewidth', 2, 'displayname', 'y2', X, y2exact, 'g-+', 'linewidth', 2, 'markersize', 50, 'displayname', 'y2exact')
+    grid
+    xlabel('x')
+    ylabel('y ')
+    title(cstrcat('Sol for y2 via Euler with m = ', num2str(m)));
+endfunction
+
+if (op == 1)% validação
+    clc;
+    % For m = 5
+    [X, Y1Euler, Y2Euler] = validate(5)
+
+    % wait 5 secs
+    pause(5)
+
+    % For m = 20
+    [X, Y1Euler, Y2Euler] = validate(20)
 
 endif
 
@@ -60,13 +100,13 @@ if (op == 4)%massa Mola
     Y = zeros(1, m + 1);
     %  Euler
     titulo= 'Sol via Euler Massa Mola Posicao em (azul)e (dy/dt em verde) ';
-    [X, Y1, Y2] = IVPEuler(a, b, y1a, y2a, m, f1, f2, titulo);
+    [X, Y1, Y2] = rk1(a, b, y1a, y2a, m, f1, f2, titulo);
     % graficos
     % para y1
     plot(X, Y1, 'b*', X(1), Y1(1), 'bo', X, Y2, 'g+', X(1), Y2(1), 'go')
     %
     %para y2
-    plot(X,Y2, 'b*', X(1),Y2(1), 'go')
+    plot(X, Y2, 'b*', X(1), Y2(1), 'go')
     grid
     xlabel('x')
     ylabel('y ')
@@ -92,7 +132,7 @@ if (op == 5)
     Y = zeros(1, m + 1);
     %  Euler
     titulo= 'Sol via Euler para sistema presa/Pred:  presa: y1(0)=16 ; Pred: y2(0)= 2';
-    [X, Y1, Y2] = IVPEuler(a, b, y1a, y2a, m, f1, f2, titulo);
+    [X, Y1, Y2] = rk1(a, b, y1a, y2a, m, f1, f2, titulo);
     % graficos
     %{
     % para y1
