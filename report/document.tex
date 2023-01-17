@@ -1,0 +1,79 @@
+\documentclass[a4paper, 12pt, brazil]{abntex2}
+
+% \usepackage[utf8]{inputenc} % not needed for XeLaTeX
+% \usepackage[brazil]{babel}
+\usepackage[useregional]{datetime2}
+\usepackage{fullpage} % changes the margin
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+% \usepackage[colorinlistoftodos]{todonotes}
+% Reajuste de tamanho horizontal de environments
+% \usepackage{adjustbox}
+% \usepackage{stackrel}
+\usepackage{mathtools,bm}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{enumitem}
+% \usepackage{stackrel}
+% \usepackage{graphicx}
+% \usepackage{dsfont}
+% \usepackage{titling}
+% \usepackage{emoji}
+\usepackage[dvipsnames]{xcolor} % or package color
+\usepackage{listings}
+\definecolor{background}{rgb}{0.94,0.95,0.96}
+\lstdefinestyle{txtOutput}{
+    frame=lt,
+    %frame=single,
+    %fontsize=\small,
+    backgroundcolor=\color{background},
+    keywordstyle=\ttfamily\color{OliveGreen},
+    identifierstyle=\ttfamily\color{CadetBlue}\bfseries, 
+    commentstyle=\color{Brown},
+    stringstyle=\ttfamily,
+    tabsize=1,
+    % literate={\ \ }{{\ }}1, reduce the tab width from double to single spacing
+    numbers=left,
+    xleftmargin=2em,
+    breaklines=true,
+    breakatwhitespace=true,
+    % framexleftmargin=1.5em % Uncomment these two lines if you prefer to have the frame
+}
+
+\usepackage{comment}
+% Pseudoalgoritmo
+\usepackage[portuguese,
+            portuguesekw,
+            onelanguage,
+            linesnumbered,
+            ruled,
+            lined,
+            longend,
+            fillcomment
+            ]{algorithm2e}
+% \usetikzlibrary{automata, positioning, arrows}
+% \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+% \tikzset{->}
+\setlength \parindent{0pt}
+\setlength {\marginparwidth}{2cm}
+
+\newcommand{\todaysdate}{\DTMdisplaydate{\the\year}{\the\month}{\the\day}{-1}}
+
+\newcounter{columncounter}[section]
+\newcounter{linecounter}[section]
+
+\title{Algoritmos Numéricos\\Trabalho Computacional 2}
+\author{Henrique Coutinho Layber}
+\date{\todaysdate}
+
+\begin{document}
+\vspace{-3cm}
+\maketitle
+\hrule
+
+%\vspace{5cm}
+\input{intro}
+\input{rk}
+\input{problems}
+
+\end{document}

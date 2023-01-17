@@ -1,0 +1,130 @@
+\section*{Problemas}
+\subsection*{Problema 1}
+O problema da validação consiste em uma sistema simples onde temos a solução exata.
+$$
+\left\{
+    \begin{array}{l}
+        y_1' = f_1(x, y_1, y_2) = y_2 \\
+        y_2' = f_2(x, y_1, y_2) = 2y_1 + y_2 - x^2 \\
+        y_1(0) = 1 \\
+        y_2(0) = 0
+    \end{array}
+\right.
+$$
+Para $m = 5$, obtivemos o seguinte resultado:
+
+$$ 
+y_1 = \begin{bmatrix}
+    1.0000 \\
+    1.0000 \\
+    1.0800 \\
+    1.2544 \\
+    1.5437 \\
+    1.9768
+\end{bmatrix}, \begin{bmatrix}
+    1.0000 \\
+    1.0430 \\
+    1.1864 \\
+    1.4600 \\
+    1.9083 \\
+    2.5973
+\end{bmatrix} = Y_{1_{exact}} 
+$$
+
+$$
+y_2 = \begin{bmatrix}
+    0.0000 \\
+    0.4000 \\
+    0.8720 \\
+    1.4464 \\
+    2.1654 \\
+    3.0880
+\end{bmatrix}, \begin{bmatrix}
+    1.0000 \\
+    1.0430 \\
+    1.1864 \\
+    1.4600 \\
+    1.9083 \\
+    2.5973
+\end{bmatrix} = Y_{2_{exact}} 
+$$
+
+Gráficos:
+
+\includesvg[scale=0.4]{p1y1} \\
+\includesvg[scale=0.4]{p1y2}
+
+Como um teste, troquei o valor de $y_{2}(a)$ para $1.0$, o mesmo que o valor exato, e obtive os resultados:
+
+$$
+y_1 = \begin{bmatrix}
+    1.0000 \\
+    1.2000 \\
+    1.5200 \\
+    1.9984 \\
+    2.6877 \\
+    3.6603
+\end{bmatrix}, \begin{bmatrix}
+    1.0000 \\
+    1.0430 \\
+    1.1864 \\
+    1.4600 \\
+    1.9083 \\
+    2.5973
+\end{bmatrix} = Y_{1_{exact}} 
+$$
+
+$$
+y_2 = \begin{bmatrix}
+    1.0000 \\
+    1.6000 \\
+    2.3920 \\
+    3.4464 \\
+    4.8630 \\
+    6.7827
+\end{bmatrix},\begin{bmatrix}
+    1.0000 \\
+    1.0430 \\
+    1.1864 \\
+    1.4600 \\
+    1.9083 \\
+    2.5973
+\end{bmatrix} = Y_{2_{exact}}
+$$
+
+Interessantemente, ao definir o valor inicial $y_2(a)$ como o valor exato, esperamos que o erro seja menor, mas o erro aumentou. Isso acontece porque o método de Euler é um método de 1ª ordem, ou seja, ele não é muito preciso, e a folga que erro para um lado (negativo, pois $y_2(0) = 0$ quando $y_{2_{exact}}(0) = 1$) nos deu margem de erro pra extrapolar o declive da curva, fazendo com que o erro aumentasse quando removemos esse ``buffer''. \\
+Isso foi acaso, e porque já conhecemos a função exata, mas em um cenário onde não conhecemos a função no ponto, ou até mesmo se conhecemos a função no ponto mas não sua curva, não podemos fazer esse tipo de estimativa propositalmente.
+
+\subsection*{Problema 2}
+O problema 2 consiste em resolver o PVI dado na especificação do trabalho, onde não temos a solução exata.
+$$
+\left\{
+    \begin{array}{l}
+        y_1' = f_1(x, y_1, y_2) = y_1 + y_2 + 3x \\
+        y_2' = f_2(x, y_1, y_2) = 2y_1 - y_2 - x \\
+        y_1(0) = 1 \\
+        y_2(0) = -1
+    \end{array}
+\right.
+$$
+Para $m = 20$, obtivemos o seguinte resultado:
+
+\includesvg[scale=0.4]{p2}
+
+\subsection*{Problema 3}
+O problema 3 consiste em resolver um circuito RLC, dado o PVI indicado pelas Leis de Kirchhoff, onde não temos a solução exata. Deve-se obter a corrente $I(t)$ no tempo $t$, onde $t \in [0, 6]$ minutos.
+Para $m = 60$, obtivemos o seguinte resultado:
+
+\includesvg[scale=0.4]{p3}
+
+\subsection*{Problema 4}
+O problema 4 é um sistema massa-mola, onde não temos a solução exata.
+Para $m = 400$, obtivemos o seguinte resultado:
+
+\includesvg[scale=0.4]{p4}
+
+\subsection*{Problema 5}
+O problema 5 é um sistema de presa-predador , onde não temos a solução exata.
+Para $m = 240$, obtivemos o seguinte resultado:
+
+\includesvg[scale=0.4]{p5}

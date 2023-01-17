@@ -41,6 +41,10 @@ if (op == 1)% validação
         y2exact(i + 1) = y2exactf(a + (i) * h);
     endfor
 
+    % Displaying exact solutions
+    y1exact
+    y2exact
+
     % Plot y1 and y1exact at the same time on x from a to b
     plot(X, Y1Euler, 'b-o', 'linewidth', 2, 'displayname', 'y1', X, y1exact, 'g-+', 'linewidth', 2, 'markersize', 50, 'displayname', 'y1exact')
     grid
@@ -143,7 +147,7 @@ if (op == 4)%massa Mola
     %m = input ('qtos subintervalos (m)? ');
     m = 400;
     %  Euler
-    titulo= 'Sol via Euler Massa Mola Posicao em (azul)e (dy/dt em verde) ';
+    titulo= 'Sol via Euler Massa Mola';
     [X, Y1, Y2] = rk1(a, b, y1a, y2a, m, f1, f2);
     % graficos
     % para y1 e y2
@@ -170,7 +174,7 @@ if (op == 5)
     %m = input ('qtos subintervalos (m)? ');
     m = 240;
     %  Euler
-    titulo= 'Sol via Euler para sistema presa/Pred:  presa: y1(0)=16 ; Pred: y2(0)= 2';
+    titulo= 'Sol via Euler para sistema presa/Pred';
     [X, Y1, Y2] = rk1(a, b, y1a, y2a, m, f1, f2);
     % graficos
     plot(X, Y1, 'b-*', X(1), Y1(1), 'bo', X, Y2, 'g-*', X(1), Y2(1), 'go')

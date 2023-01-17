@@ -1,0 +1,5 @@
+\section*{Como o algoritmo funciona}
+
+A obtenção de valores exatos é custosa, portanto usamos métodos rápido para aproximar soluções mais rapidamente, ao depender da aplicação, vale mais a pena um valor rápido e ``preciso o suficiente''. O método de Euler é um dos métodos mais simples para resolver PVIs, porém é um dos mais rápidos, sendo assim, é um método muito útil para se ter em mãos, entretanto, é um método de 1ª ordem, o que significa que ele não é muito preciso, porém, para problemas simples, ele pode ser suficiente. Uma alternativa para o método de Euler é o método de Runge-Kutta de ordem maior, pois trata EDOs de ordem maiores e entretanto são mais precisos que o método de Euler, porém, é mais lentos.
+
+O método de Euler trata-se de subdividir o domínio $[a, b]$ em $m$ fatias e no ponto inicial de cada fatia continuar extrapolando a linha tangente à função no ponto específico, enquanto métodos de ordem maior fazem isso tanto no primeiro ponto quanto em onde o resultado da extrapolação anterior nos levou, ``atualizando'' o valor da tangente em sub-fatias.
