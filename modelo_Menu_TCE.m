@@ -1,8 +1,8 @@
 % Integrantes
 % Henrique Layber
 %
+
 clc
-clear
 printf ('Digite uma opçao:  \n')
 printf ('1 - Resolver o  problema 1 (o exemplo da validaçao) \n')
 printf ('2 - Resolver o problema 2 \n')
@@ -92,7 +92,37 @@ if (op == 2)
 endif
 
 if (op == 3)%circuito
-    disp(' Fazer...')
+    % IVP System
+    R1 = 4; % ohms
+    C = 0.25; % farads
+    R2 = 6; % ohms
+    L = 1; % henrys
+    V = 12; % volts
+
+    % Kirchoff's laws
+    I1f = @ (x, I1, I2) 12 - 4 * I1 + 4 * I2;
+    I2f = @ (x, I1, I2) 4.8 - 1.6 * I1 - 1.2 * I2;
+
+    % Initial conditions
+    % Switch is initially open, so I1 = I2 = 0
+    I1 = 0;
+    I2 = 0;
+
+    % Execution settings
+    m = 60;
+    a = 0;
+    b = 6;
+
+    % Solving
+    [X, Y1Euler, Y2Euler] = rk1(a, b, I1, I2, m, I1f, I2f)
+
+    % Plotting
+    plot(X, Y1Euler, 'b-o', 'linewidth', 2, 'displayname', 'I1', X, Y2Euler, 'r-o', 'linewidth', 2, 'displayname', 'I2')
+    grid
+    xlabel('t (minutes)')
+    ylabel('I (amperes)')
+    legend('I1', 'I2')
+    title(cstrcat('Sol for I via Euler with m = ', num2str(m)));
 endif
 
 if (op == 0)

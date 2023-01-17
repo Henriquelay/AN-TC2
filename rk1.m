@@ -1,6 +1,3 @@
-% INTEGRANTES
-% Henrique Layber
-
 % A function that takes a, b, y1a, y2a, m, f1 and f2
 % and returns the solution of the system of differential equations
 % y1' = y2
@@ -21,6 +18,6 @@ function [x, y1, y2] = rk1(a, b, y1a, y2a, m, f1, f2)
     for i = 1:m
         y1(i + 1) = y1(i) + h * f1(x(i), y1(i), y2(i));
         y2(i + 1) = y2(i) + h * f2(x(i), y1(i), y2(i));
-    end
+    endfor
 
-end
+endfunction
